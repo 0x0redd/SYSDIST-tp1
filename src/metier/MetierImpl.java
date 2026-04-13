@@ -1,22 +1,25 @@
 package metier;
 
 import dao.IDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MetierImpl implements IMetier {
-    private IDao dao=null;
+    private IDao dao;
 
     @Override
     public double calcul() {
-        double d=dao.getData();
-        double res=d*23;
-        return res;
+        double d = dao.getDate();
+        return d * 23;
     }
-    /*
-     * Pour Injecter dans la variable dao
-     * un objet d'une classe qui impl�mente l'interface IDao
+
+    /**
+     * Injection d'une implémentation de {@link IDao}
+     * (instanciation statique, dynamique, Spring XML ou annotations).
      */
+    @Autowired
     public void setDao(IDao dao) {
         this.dao = dao;
     }
-
 }
